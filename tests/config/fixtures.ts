@@ -122,7 +122,7 @@ test.beforeAll(async () => {
   })
   // Direct Electron console to Node terminal.
   page.on('console', console.log);
-  await page.getByTestId('img[alt="Jan - Logo"]', {
+  await page.waitForSelector('img[alt="Logo"]', {
     state: 'visible',
     timeout: TIMEOUT,
   })
