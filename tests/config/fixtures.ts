@@ -61,7 +61,7 @@ export async function teardownElectron() {
 export const test = base.extend<
   {
     commonActions: CommonActions
-    sammplePage: SamplePage
+    samplePage: SamplePage
     attachVideoPage: Page
     attachScreenshotsToReport: void
   },
@@ -70,7 +70,7 @@ export const test = base.extend<
   commonActions: async ({ request }, use, testInfo) => {
     await use(new CommonActions(page, testInfo))
   },
-  sammplePage: async ({ commonActions }, use) => {
+  samplePage: async ({ commonActions }, use) => {
     await use(new SamplePage(page, commonActions))
   },
   createVideoContext: [

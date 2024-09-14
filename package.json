@@ -5,7 +5,7 @@
   "author": "Van Pham",
   "main": "dist/main.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "xvfb-maybe -- playwright test"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
