@@ -1,6 +1,7 @@
 name: Test for each push
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '**.js'
