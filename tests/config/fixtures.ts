@@ -43,9 +43,10 @@ export async function setupElectron() {
 
   electronApp = await electron.launch({ args: ['dist/main.js'] });
 
-  await stubDialog(electronApp, 'showMessageBox', { response: 1 })
+  // Handle msg box if any
+  // await stubDialog(electronApp, 'showMessageBox', { response: 1 })
 
-  page = await electronApp.firstWindow()
+  page = await electronApp.firstWindow({timeout: TIMEOUT})
 }
 
 export async function teardownElectron() {
@@ -72,28 +73,28 @@ export const test = base.extend<
   hubPage: async ({ commonActions }, use) => {
     await use(new HubPage(page, commonActions))
   },
-  // createVideoContext: [
-  //   async ({ playwright }, use) => {
-  //     const context = electronApp.context()
-  //     await use(context)
-  //   },
-  //   { scope: 'worker' },
-  // ],
+  createVideoContext: [
+    async ({ playwright }, use) => {
+      const context = electronApp.context()
+      await use(context)
+    },
+    { scope: 'worker' },
+  ],
 
-  // attachVideoPage: [
-  //   async ({ createVideoContext }, use, testInfo) => {
-  //     await use(page)
-  //
-  //     if (testInfo.status !== testInfo.expectedStatus) {
-  //       const path = await createVideoContext.pages()[0].video()?.path()
-  //       await createVideoContext.close()
-  //       await testInfo.attach('video', {
-  //         path: path,
-  //       })
-  //     }
-  //   },
-  //   { scope: 'test', auto: true },
-  // ],
+  attachVideoPage: [
+    async ({ createVideoContext }, use, testInfo) => {
+      await use(page)
+
+      if (testInfo.status !== testInfo.expectedStatus) {
+        const path = await createVideoContext.pages()[0].video()?.path()
+        await createVideoContext.close()
+        await testInfo.attach('video', {
+          path: path,
+        })
+      }
+    },
+    { scope: 'test', auto: true },
+  ],
 
   attachScreenshotsToReport: [
     async ({ commonActions }, use, testInfo) => {
@@ -118,6 +119,12 @@ test.beforeAll(async () => {
   await context.tracing.start({ screenshots: true, snapshots: true })
   page.on('close', async () => {
     await context.tracing.stop()
+  })
+  // Direct Electron console to Node terminal.
+  page.on('console', console.log);
+  await page.getByTestId('img[alt="Jan - Logo"]', {
+    state: 'visible',
+    timeout: TIMEOUT,
   })
 })
 
