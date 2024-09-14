@@ -41,7 +41,7 @@ export async function setupElectron() {
   //   // recordVideo: { dir: Constants.VIDEO_DIR }, // Specify the directory for video recordings
   // })
 
-  electronApp = await electron.launch({ args: ['dist/main.js'] });
+  electronApp = await electron.launch({ args: ['./dist/main.js'] });
 
   // Handle msg box if any
   // await stubDialog(electronApp, 'showMessageBox', { response: 1 })
@@ -61,7 +61,7 @@ export async function teardownElectron() {
 export const test = base.extend<
   {
     commonActions: CommonActions
-    hubPage: SamplePage
+    sammplePage: SamplePage
     attachVideoPage: Page
     attachScreenshotsToReport: void
   },
@@ -70,7 +70,7 @@ export const test = base.extend<
   commonActions: async ({ request }, use, testInfo) => {
     await use(new CommonActions(page, testInfo))
   },
-  hubPage: async ({ commonActions }, use) => {
+  sammplePage: async ({ commonActions }, use) => {
     await use(new SamplePage(page, commonActions))
   },
   createVideoContext: [
