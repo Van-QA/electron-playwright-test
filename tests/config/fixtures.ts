@@ -13,7 +13,7 @@ import {
   stubDialog,
 } from 'electron-playwright-helpers'
 import { Constants } from './constants'
-import { HubPage } from '../pages/hubPage'
+import { SamplePage } from '../pages/samplePage'
 import { CommonActions } from '../pages/commonActions'
 
 export let electronApp: ElectronApplication
@@ -61,7 +61,7 @@ export async function teardownElectron() {
 export const test = base.extend<
   {
     commonActions: CommonActions
-    hubPage: HubPage
+    hubPage: SamplePage
     attachVideoPage: Page
     attachScreenshotsToReport: void
   },
@@ -71,7 +71,7 @@ export const test = base.extend<
     await use(new CommonActions(page, testInfo))
   },
   hubPage: async ({ commonActions }, use) => {
-    await use(new HubPage(page, commonActions))
+    await use(new SamplePage(page, commonActions))
   },
   createVideoContext: [
     async ({ playwright }, use) => {
