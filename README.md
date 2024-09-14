@@ -1,13 +1,13 @@
-# Electron Playwright Example on GitHub Actions Workflow for CI/CT & E2E Testing
-[![CI/CT for each push](https://github.com/Van-QA/electron-playwright-test/actions/workflows/ci.yml/badge.svg)](https://github.com/Van-QA/electron-playwright-test/actions/workflows/ci.yml)
+# Electron Playwright Example on GitHub Actions Workflow for CI/CD & E2E Testing
+[![CI/CD for each push](https://github.com/Van-QA/electron-playwright-test/actions/workflows/ci.yml/badge.svg)](https://github.com/Van-QA/electron-playwright-test/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/Van-QA/electron-playwright-test/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Van-QA/electron-playwright-test/actions/workflows/codeql-analysis.yml)
 
-A Playwright CI/CT & E2D Testing Sample with GitHub Actions Workflow for Electron App
+A Playwright E2E Testing Sample with GitHub Actions Workflow for Electron App
 
 This is a minimal Playwright E2E-testing sample for Electron application based on the [electron-quick-start
 ](https://github.com/electron/electron-quick-start) with [Quick Start Guide](https://electronjs.org/docs/latest/tutorial/quick-start) within the Electron documentation and [ElectronApplication | Playwright](https://playwright.dev/docs/api/class-electronapplication/) within the Playwright documentation.
 
-Support CI/CI with Playwright for Electron app based on GitHub Actions.
+Support workflow that trigger Playwright for Electron app based on GitHub Actions.
 
 ## Usage
 
@@ -25,4 +25,5 @@ yarn start
 
 ## GitHub Actions Workflow
 
-View source code: 
+View source code:
+https://github.com/Van-QA/electron-playwright-test/blob/master/.github/workflows/ci.yml

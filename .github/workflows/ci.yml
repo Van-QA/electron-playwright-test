@@ -1,4 +1,4 @@
-name: CI/CT for each push
+name: Test for each push
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - '**.ts'
       - '**.json'
       - '**/ci.yml'
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
     branches: [ main ]
 

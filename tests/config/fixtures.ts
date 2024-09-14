@@ -114,8 +114,17 @@ export const test = base.extend<
 test.beforeAll(async () => {
   test.setTimeout(TIMEOUT)
   await setupElectron()
+  context = electronApp.context()
+  await context.tracing.start({ screenshots: true, snapshots: true })
+  page.on('close', async () => {
+    await context.tracing.stop()
+  })
 })
 
+test.beforeEach(async () => {
+  // start chunk before each test
+  await context.tracing.startChunk()
+})
 
 test.afterAll(async () => {
   // temporally disabling this due to the config for parallel testing WIP
